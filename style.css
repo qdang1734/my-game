@@ -194,3 +194,74 @@ body {
 .nav-item.active {
     color: #fff;
 }
+/* --- STYLES FOR WALLET PAGE --- */
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-bottom: 20px;
+}
+.page-header h1 {
+    font-size: 1.5em;
+}
+.back-button {
+    position: absolute;
+    left: 0;
+    font-size: 1.5em;
+    color: white;
+    text-decoration: none;
+}
+.wallet-connect-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+.wallet-info-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+.wallet-info-card p {
+    margin-bottom: 10px;
+}
+.wallet-info-card span {
+    font-weight: 600;
+    color: #ffc107;
+}
+#connect-button-container button {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1em;
+    font-weight: 600;
+}
+.red-button {
+    background: linear-gradient(90deg, #e53935, #f44336);
+    box-shadow: 0 0 20px #e53935;
+}
+
+.wallet-actions .action-card {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+.wallet-actions h3 {
+    margin-bottom: 10px;
+}
+.wallet-actions p {
+    font-size: 0.9em;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 15px;
+}
+.wallet-actions input {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 12px;
+    color: white;
+    font-size: 1em;
+    margin-bottom: 15px;
+}

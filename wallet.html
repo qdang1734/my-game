@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>My Wallet</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+</head>
+<body>
+
+    <div class="app-container">
+        <header class="page-header">
+            <a href="index.html" class="back-button"><i class="fas fa-arrow-left"></i></a>
+            <h1>My Wallet</h1>
+        </header>
+
+        <section class="wallet-connect-section">
+            <div id="wallet-info" class="wallet-info-card">
+                <p><strong>Trạng thái:</strong> <span id="status">Chưa kết nối</span></p>
+                <p><strong>Địa chỉ ví:</strong> <span id="address">...</span></p>
+            </div>
+            
+            <div id="connect-button-container"></div>
+
+            <button id="disconnect-button" class="action-button red-button" style="display: none;">
+                <i class="fas fa-power-off"></i> Ngắt kết nối
+            </button>
+        </section>
+
+        <section class="wallet-actions">
+            <div class="action-card">
+                <h3>Nạp TON</h3>
+                <p>Nạp TON vào tài khoản để sử dụng trong game.</p>
+                <button id="deposit-button" class="action-button"><i class="fas fa-download"></i> Nạp tiền</button>
+            </div>
+            <div class="action-card">
+                <h3>Rút TON</h3>
+                <input type="text" id="withdraw-amount" placeholder="Nhập số lượng TON">
+                <button id="withdraw-button" class="action-button"><i class="fas fa-upload"></i> Rút tiền</button>
+            </div>
+        </section>
+
+        <nav class="footer-nav">
+            <a href="index.html" class="nav-item">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-chart-bar"></i>
+                <span>Stats</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-user-plus"></i>
+                <span>Invite</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-dollar-sign"></i>
+                <span>Earn</span>
+            </a>
+            <a href="wallet.html" class="nav-item active">
+                <i class="fas fa-wallet"></i>
+                <span>Wallet</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="wallet.js"></script>
+</body>
+</html>
