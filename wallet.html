@@ -10,11 +10,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
     <!--
-      SỬA LỖI:
-      - Thêm "defer" vào cả hai script.
-      - "defer" đảm bảo script thư viện sẽ được tải xong TRƯỚC KHI script của chúng ta chạy.
+      SỬA LỖI QUAN TRỌNG:
+      - Đổi nguồn tải thư viện từ unpkg.com sang cdn.jsdelivr.net
     -->
-    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tonconnect/ui@latest/dist/tonconnect-ui.min.js" defer></script>
     <script src="wallet.js" defer></script>
 </head>
 <body>
@@ -79,7 +78,5 @@
             </a>
         </nav>
     </div>
-
-    <!-- Script đã được chuyển lên phần <head> với "defer" nên không cần ở đây nữa -->
 </body>
 </html>
