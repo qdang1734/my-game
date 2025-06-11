@@ -1,65 +1,62 @@
-// Chạy code sau khi toàn bộ trang đã được tải và sẵn sàng
-document.addEventListener('DOMContentLoaded', function () {
-    // Kiểm tra xem biến TonConnectUI có tồn tại không
+// Hàm chính để khởi tạo giao diện và chức năng của ví
+function initializeWalletPage() {
+    console.log("Attempting to initialize wallet UI...");
+
+    // Kiểm tra lại lần nữa để chắc chắn thư viện đã tồn tại
     if (typeof TonConnectUI === 'undefined') {
-        console.error('TonConnectUI is not defined. Make sure the library is loaded.');
-        alert('Lỗi: Không thể tải thư viện ví. Vui lòng thử lại.');
+        console.error('FATAL: TonConnectUI is still not defined. Initialization aborted.');
+        alert('Lỗi nghiêm trọng: Không thể tải thư viện ví. Vui lòng kiểm tra kết nối mạng và thử lại.');
         return;
     }
+    
+    console.log("TonConnectUI library confirmed. Setting up the wallet page.");
 
     // 1. Khởi tạo TonConnectUI
     const tonConnectUI = new TonConnectUI.TonConnectUI({
-        // URL đến file manifest, phải là đường dẫn tuyệt đối và chính xác
         manifestUrl: 'https://my-game-six-mu.vercel.app/tonconnect-manifest.json',
-        // ID của thẻ div mà nút "Connect Wallet" sẽ được chèn vào
         buttonRootId: 'connect-button-container'
     });
 
-    // Lấy các phần tử trên trang để tương tác
+    // Lấy các phần tử trên trang
     const disconnectBtn = document.getElementById('disconnect-button');
     const statusElement = document.getElementById('status');
     const addressElement = document.getElementById('address');
 
-    // 2. Lắng nghe và xử lý sự kiện thay đổi trạng thái của ví
+    // 2. Lắng nghe thay đổi trạng thái ví
     tonConnectUI.onStatusChange(wallet => {
         if (wallet) {
-            // --- Trạng thái: ĐÃ KẾT NỐI ---
             const connectedAddress = TonConnectUI.toUserFriendlyAddress(wallet.account.address);
-            
-            // Cập nhật giao diện
             statusElement.textContent = 'Đã kết nối';
             addressElement.textContent = connectedAddress.slice(0, 6) + '...' + connectedAddress.slice(-4);
-            disconnectBtn.style.display = 'block'; // Hiển thị nút "Ngắt kết nối"
-
+            disconnectBtn.style.display = 'block';
         } else {
-            // --- Trạng thái: CHƯA KẾT NỐI ---
-            
-            // Cập nhật giao diện
             statusElement.textContent = 'Chưa kết nối';
             addressElement.textContent = '...';
-            disconnectBtn.style.display = 'none'; // Ẩn nút "Ngắt kết nối"
+            disconnectBtn.style.display = 'none';
         }
     });
 
-    // 3. Gán sự kiện cho nút ngắt kết nối
+    // 3. Xử lý nút ngắt kết nối
     disconnectBtn.addEventListener('click', () => {
         tonConnectUI.disconnect();
     });
 
-    // --- XỬ LÝ CÁC NÚT CHỨC NĂNG MẪU ---
-    const depositBtn = document.getElementById('deposit-button');
-    const withdrawBtn = document.getElementById('withdraw-button');
+    // Xử lý các nút chức năng mẫu
+    document.getElementById('deposit-button').addEventListener('click', () => alert('CHỨC NĂNG ĐANG PHÁT TRIỂN!'));
+    document.getElementById('withdraw-button').addEventListener('click', () => alert('CHỨC NĂNG ĐANG PHÁT TRIỂN!'));
+}
 
-    depositBtn.addEventListener('click', () => {
-        alert('CHỨC NĂNG ĐANG PHÁT TRIỂN!\nĐể nạp tiền, bạn cần gửi TON vào địa chỉ ví của game (địa chỉ này sẽ do backend cung cấp).');
-    });
+// Hàm này sẽ liên tục kiểm tra xem thư viện TonConnectUI đã được tải xong chưa
+function waitForLibraryAndInit() {
+    // Nếu biến TonConnectUI đã tồn tại trong window (tức là thư viện đã tải xong)
+    if (typeof TonConnectUI !== 'undefined') {
+        // Gọi hàm khởi tạo chính
+        initializeWalletPage();
+    } else {
+        // Nếu chưa, đợi 100 mili giây rồi kiểm tra lại
+        setTimeout(waitForLibraryAndInit, 100);
+    }
+}
 
-    withdrawBtn.addEventListener('click', () => {
-        const amount = document.getElementById('withdraw-amount').value;
-        if (amount) {
-            alert(`Yêu cầu rút ${amount} TON đã được gửi đi!\n(Đây là chức năng mẫu, chưa có giao dịch thật)`);
-        } else {
-            alert('Vui lòng nhập số lượng TON muốn rút.');
-        }
-    });
-});
+// Bắt đầu quá trình chờ đợi ngay khi cấu trúc trang HTML đã sẵn sàng
+document.addEventListener('DOMContentLoaded', waitForLibraryAndInit);
