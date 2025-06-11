@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function () {
     // 1. Khởi tạo TonConnectUI
     const tonConnectUI = new TonConnectUI.TonConnectUI({
-        manifestUrl: 'https://YOUR_APP_URL/tonconnect-manifest.json', // Sẽ sửa URL này sau
+        manifestUrl: 'https://my-game-six-mu.vercel.app/tonconnect-manifest.json', // Sẽ sửa URL này sau
         buttonRootId: 'connect-button-container'
     });
 
