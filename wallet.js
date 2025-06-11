@@ -1,21 +1,29 @@
 // Hàm chính để khởi tạo giao diện và chức năng của ví
 function initializeWalletPage() {
-    console.log("Attempting to initialize wallet UI...");
+    console.log("SUCCESS: TonConnectUI library is available. Initializing the wallet UI...");
 
-    // Kiểm tra lại lần nữa để chắc chắn thư viện đã tồn tại
-    if (typeof TonConnectUI === 'undefined') {
-        console.error('FATAL: TonConnectUI is still not defined. Initialization aborted.');
-        alert('Lỗi nghiêm trọng: Không thể tải thư viện ví. Vui lòng kiểm tra kết nối mạng và thử lại.');
-        return;
-    }
-    
-    console.log("TonConnectUI library confirmed. Setting up the wallet page.");
-
-    // 1. Khởi tạo TonConnectUI
+    // 1. Khởi tạo TonConnectUI với danh sách ví cụ thể
     const tonConnectUI = new TonConnectUI.TonConnectUI({
         manifestUrl: 'https://my-game-six-mu.vercel.app/tonconnect-manifest.json',
-        buttonRootId: 'connect-button-container'
+        buttonRootId: 'connect-button-container',
+        // Thêm tham số này để ưu tiên các ví, bao gồm cả ví trong Telegram (TON Space)
+        walletsListConfiguration: {
+          includeWallets: [
+            {
+              appName: "tonkeeper",
+              name: "Tonkeeper",
+              imageUrl: "https://s.tonkeeper.com/s/ico/ico-tonkeeper-288.png"
+            },
+            {
+              appName: "nicegramWallet",
+              name: "Nicegram Wallet",
+              imageUrl: "https://static.nicegram.app/icon.png"
+            }
+          ]
+        }
     });
+    
+    console.log("TonConnectUI instance created.");
 
     // Lấy các phần tử trên trang
     const disconnectBtn = document.getElementById('disconnect-button');
@@ -25,11 +33,13 @@ function initializeWalletPage() {
     // 2. Lắng nghe thay đổi trạng thái ví
     tonConnectUI.onStatusChange(wallet => {
         if (wallet) {
+            console.log("Wallet connected:", wallet);
             const connectedAddress = TonConnectUI.toUserFriendlyAddress(wallet.account.address);
             statusElement.textContent = 'Đã kết nối';
             addressElement.textContent = connectedAddress.slice(0, 6) + '...' + connectedAddress.slice(-4);
             disconnectBtn.style.display = 'block';
         } else {
+            console.log("Wallet disconnected.");
             statusElement.textContent = 'Chưa kết nối';
             addressElement.textContent = '...';
             disconnectBtn.style.display = 'none';
@@ -47,14 +57,23 @@ function initializeWalletPage() {
 }
 
 // Hàm này sẽ liên tục kiểm tra xem thư viện TonConnectUI đã được tải xong chưa
+let retryCount = 0;
 function waitForLibraryAndInit() {
+    console.log(`Checking for TonConnectUI library... Attempt: ${retryCount + 1}`);
+    retryCount++;
+
     // Nếu biến TonConnectUI đã tồn tại trong window (tức là thư viện đã tải xong)
     if (typeof TonConnectUI !== 'undefined') {
         // Gọi hàm khởi tạo chính
         initializeWalletPage();
     } else {
-        // Nếu chưa, đợi 100 mili giây rồi kiểm tra lại
-        setTimeout(waitForLibraryAndInit, 100);
+        // Nếu chưa, đợi 200 mili giây rồi kiểm tra lại. Tối đa 50 lần (10 giây)
+        if (retryCount < 50) {
+            setTimeout(waitForLibraryAndInit, 200);
+        } else {
+            console.error('TIMEOUT: TonConnectUI library did not load after 10 seconds.');
+            alert('Lỗi: Không thể tải thư viện ví sau nhiều lần thử. Vui lòng kiểm tra lại kết nối mạng và thử tải lại trang.');
+        }
     }
 }
 
