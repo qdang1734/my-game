@@ -2,16 +2,90 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Kitty Mint</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
-    <h1>Chào mừng bạn đến với game!</h1>
-    <p id="user-info">Đang tải thông tin người dùng...</p>
-    <button id="my-button">Nhấn vào đây</button>
+
+    <div class="app-container">
+        <header class="header">
+            <div class="user-profile">
+                <img src="https://i.pravatar.cc/150?u=quangdang" alt="Avatar" class="avatar">
+                <div class="user-info">
+                    <span id="user-name">Quang Dang</span>
+                    <span class="user-rank">
+                        <i class="fas fa-shield-halved"></i> Golden Gladiator
+                    </span>
+                </div>
+            </div>
+            <div class="header-actions">
+                <button class="airdrop-btn">AIRDROP</button>
+                <div class="lang-selector">
+                    <i class="fa-solid fa-globe"></i>
+                </div>
+            </div>
+        </header>
+
+        <section class="balance-section">
+            <div class="balance-card">
+                <div class="balance-icons">
+                    <i class="fa-solid fa-wallet"></i>
+                    <i class="fa-regular fa-circle-question"></i>
+                </div>
+                <div class="balance-amount">
+                    <i class="fa-brands fa-telegram"></i> 0.2305
+                </div>
+                <div class="rewards">
+                    <div class="reward-item">
+                        <span>Total Reward</span>
+                        <strong><i class="fa-brands fa-telegram"></i> 5.3804</strong>
+                    </div>
+                    <div class="reward-item">
+                        <span>Daily Reward</span>
+                        <strong><i class="fa-brands fa-telegram"></i> 0.1992</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <main class="main-content">
+            <div class="egg-container">
+                <img src="https://www.freeiconspng.com/uploads/purple-easter-egg-png-3.png" alt="Mysterious Egg" class="egg-image">
+            </div>
+            <button class="action-button">
+                0.1 <i class="fa-brands fa-telegram"></i>
+            </button>
+            <span class="info-text">What's Inside? <i class="fas fa-info-circle"></i></span>
+        </main>
+        
+        <nav class="footer-nav">
+            <a href="#" class="nav-item active">
+                <i class="fas fa-home"></i>
+                <span>Home</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-chart-bar"></i>
+                <span>Stats</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-user-plus"></i>
+                <span>Invite</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-dollar-sign"></i>
+                <span>Earn</span>
+            </a>
+            <a href="#" class="nav-item">
+                <i class="fas fa-wallet"></i>
+                <span>Wallet</span>
+            </a>
+        </nav>
+    </div>
 
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <script src="script.js"></script>
+
 </body>
 </html>

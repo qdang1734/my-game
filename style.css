@@ -1,16 +1,196 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Reset và cài đặt chung */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    background: radial-gradient(circle, #4a2f6c, #1e1034);
+    color: white;
+    overflow: hidden; /* Chống cuộn toàn trang */
+}
+
+.app-container {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
     height: 100vh;
-    margin: 0;
-    background-color: #282c34;
-    color: white;
+    padding: 20px 15px 80px 15px; /* Chừa không gian cho nav footer */
+    overflow-y: auto; /* Cho phép cuộn nội dung nếu dài */
 }
-button {
-    padding: 10px 20px;
-    font-size: 16px;
+
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.user-profile {
+    display: flex;
+    align-items: center;
+}
+.avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    margin-right: 10px;
+}
+.user-info {
+    display: flex;
+    flex-direction: column;
+}
+#user-name {
+    font-weight: 600;
+}
+.user-rank {
+    font-size: 0.8em;
+    background-color: #ffc107;
+    color: #1e1034;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-weight: 500;
+}
+.header-actions {
+    display: flex;
+    align-items: center;
+}
+.airdrop-btn {
+    background-color: #6c5ce7;
+    border: none;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: 600;
+    margin-right: 10px;
     cursor: pointer;
+}
+.lang-selector {
+    font-size: 1.5em;
+    cursor: pointer;
+}
+
+/* Balance Section */
+.balance-section {
+    margin-top: 25px;
+}
+.balance-card {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: relative;
+}
+.balance-icons {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    display: flex;
+    gap: 15px;
+    font-size: 1.2em;
+    color: rgba(255, 255, 255, 0.7);
+}
+.balance-amount {
+    font-size: 2.5em;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 10px;
+}
+.balance-amount .fa-telegram {
+    color: #0088cc;
+}
+.rewards {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+}
+.reward-item span {
+    font-size: 0.8em;
+    color: rgba(255, 255, 255, 0.7);
+}
+.reward-item strong {
+    font-size: 1.1em;
+}
+.reward-item .fa-telegram {
+    color: #0088cc;
+}
+
+/* Main Content - Egg */
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+.egg-container {
+    position: relative;
+}
+.egg-image {
+    width: 200px;
+    height: auto;
+    filter: drop-shadow(0 0 25px rgba(124, 77, 255, 0.8));
+    animation: float 3s ease-in-out infinite;
+}
+/* Animation quả trứng bay */
+@keyframes float {
+	0% { transform: translatey(0px); }
+	50% { transform: translatey(-20px); }
+	100% { transform: translatey(0px); }
+}
+
+.action-button {
+    background: linear-gradient(90deg, #d83bff, #fa8cff);
+    border: none;
+    color: white;
+    padding: 15px 60px;
+    border-radius: 20px;
+    font-size: 1.2em;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 15px;
+    box-shadow: 0 0 20px #d83bff;
+}
+.info-text {
+    margin-top: 10px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Footer Navigation */
+.footer-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.6);
+}
+.nav-item i {
+    font-size: 1.5em;
+    margin-bottom: 3px;
+}
+.nav-item span {
+    font-size: 0.8em;
+}
+/* Style cho mục đang được chọn */
+.nav-item.active {
+    color: #fff;
 }
