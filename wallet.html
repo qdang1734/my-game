@@ -1,11 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>My Wallet</title>
+    <!-- Liên kết đến file CSS -->
     <link rel="stylesheet" href="style.css">
+    <!-- Liên kết đến thư viện icon Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <!-- TẢI THƯ VIỆN TON CONNECT - DÒNG NÀY RẤT QUAN TRỌNG -->
     <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
 </head>
 <body>
@@ -16,19 +19,23 @@
             <h1>My Wallet</h1>
         </header>
 
+        <!-- PHẦN KẾT NỐI VÍ -->
         <section class="wallet-connect-section">
             <div id="wallet-info" class="wallet-info-card">
                 <p><strong>Trạng thái:</strong> <span id="status">Chưa kết nối</span></p>
                 <p><strong>Địa chỉ ví:</strong> <span id="address">...</span></p>
             </div>
             
+            <!-- Nơi nút "Connect Wallet" sẽ được tự động chèn vào -->
             <div id="connect-button-container"></div>
 
+            <!-- Nút ngắt kết nối, sẽ hiện ra sau khi đã kết nối ví -->
             <button id="disconnect-button" class="action-button red-button" style="display: none;">
                 <i class="fas fa-power-off"></i> Ngắt kết nối
             </button>
         </section>
 
+        <!-- PHẦN CHỨC NĂNG NẠP/RÚT (CHỈ LÀ GIAO DIỆN MẪU) -->
         <section class="wallet-actions">
             <div class="action-card">
                 <h3>Nạp TON</h3>
@@ -42,6 +49,7 @@
             </div>
         </section>
 
+        <!-- PHẦN NAVIGATION Ở DƯỚI -->
         <nav class="footer-nav">
             <a href="index.html" class="nav-item">
                 <i class="fas fa-home"></i>
@@ -66,6 +74,7 @@
         </nav>
     </div>
 
+    <!-- Tải script của trang Wallet -->
     <script src="wallet.js"></script>
 </body>
 </html>
